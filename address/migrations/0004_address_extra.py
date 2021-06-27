@@ -35,4 +35,8 @@ class Migration(migrations.Migration):
             name='street_number',
             field=models.CharField(blank=True, db_index=True, max_length=20),
         ),
+        migrations.AlterModelOptions(
+            name='address',
+            options={'ordering': ('locality', 'route', 'street_number', 'extra')},
+        ),
     ]
