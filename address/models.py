@@ -35,6 +35,10 @@ def _to_python(value):
     postal_town = value.get('postal_town', '')
     postal_code = value.get('postal_code', '')
     street_number = value.get('street_number', '')
+    extra = value.get('extra')
+    name = value.get('name')
+    type = value.get('type')
+    hash = value.get('hash')
     route = value.get('route', '')
     formatted = value.get('formatted', '')
     latitude = value.get('latitude', None)
@@ -99,12 +103,15 @@ def _to_python(value):
         else:
             address_obj = Address.objects.get(
                 street_number=street_number,
+                extra=extra,
                 route=route,
                 locality=locality_obj
             )
     except Address.DoesNotExist:
         address_obj = Address(
             street_number=street_number,
+            extra=extra,
+            type=type,
             route=route,
             raw=raw,
             locality=locality_obj,
@@ -236,9 +243,12 @@ class Locality(models.Model):
 
 
 class Address(models.Model):
-    street_number = models.CharField(max_length=20, blank=True)
+    street_number = models.CharField(db_index=True, max_length=20, blank=True)
     route = models.CharField(max_length=100, blank=True)
-    extra = models.CharField(max_length=20, blank=True)
+    extra = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
+    name = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
+    type = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
+    hash = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
     locality = models.ForeignKey(Locality, on_delete=models.CASCADE, related_name='addresses', blank=True, null=True)
     raw = models.CharField(max_length=200)
     formatted = models.CharField(max_length=200, blank=True)

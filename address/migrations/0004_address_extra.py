@@ -13,6 +13,26 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='address',
             name='extra',
-            field=models.CharField(blank=True, max_length=20),
+            field=models.CharField(db_index=True, default=None, blank=True, null=True, max_length=20),
+        ),
+        migrations.AddField(
+            model_name='address',
+            name='name',
+            field=models.CharField(db_index=True, default=None, blank=True, null=True, max_length=20),
+        ),
+        migrations.AddField(
+            model_name='address',
+            name='type',
+            field=models.CharField(db_index=True, default=None, blank=True, null=True, max_length=20),
+        ),
+        migrations.AddField(
+            model_name='address',
+            name='hash',
+            field=models.CharField(db_index=True, default=None, blank=True, null=True, max_length=20),
+        ),
+        migrations.AlterField(
+            model_name='address',
+            name='street_number',
+            field=models.CharField(blank=True, db_index=True, max_length=20),
         ),
     ]

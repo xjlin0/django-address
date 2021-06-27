@@ -21,6 +21,7 @@ class AddressWidget(forms.TextInput):
                   ('locality', 'locality'), ('sublocality', 'sublocality'),
                   ('postal_code', 'postal_code'), ('postal_town', 'postal_town'),
                   ('route', 'route'), ('street_number', 'street_number'), ('extra', 'extra'),
+                  ('name', 'name'), ('type', 'type'), ('hash', 'hash'),
                   ('state', 'administrative_area_level_1'),
                   ('state_code', 'administrative_area_level_1_short'),
                   ('formatted', 'formatted_address'),
