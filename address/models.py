@@ -246,7 +246,7 @@ class Address(models.Model):
     street_number = models.CharField(db_index=True, max_length=20, blank=True)
     route = models.CharField(max_length=100, blank=True)
     extra = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
-    name = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
+    name = models.CharField(db_index=True, default=None, max_length=40, blank=True, null=True)
     type = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
     hash = models.CharField(db_index=True, default=None, max_length=20, blank=True, null=True)
     locality = models.ForeignKey(Locality, on_delete=models.CASCADE, related_name='addresses', blank=True, null=True)
